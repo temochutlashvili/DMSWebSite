@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://1.1.2.6:57002/WorkstepController.Management.asmx?wsdl" docRef="http://1.1.2.6:57002/WorkstepController.Management.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://1.1.2.6:57002/WorkstepController.Management.asmx" xmlns:q1="http://com.xyzmo.server.workstepController.Management/" binding="q1:ManagementWorkstepControllerSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://1.1.2.6:57002/WorkstepController.Management.asmx" xmlns:q2="http://com.xyzmo.server.workstepController.Management/" binding="q2:ManagementWorkstepControllerSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

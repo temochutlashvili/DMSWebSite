@@ -20,7 +20,6 @@ class NewCustomer : ExternalSystem
 
     public override void SendToSystem(string name, byte[] document)
     {
-
-
+        
     }
 }

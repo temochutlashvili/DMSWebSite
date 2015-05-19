@@ -1,0 +1,987 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://com.xyzmo.server.workstepController.Management/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://com.xyzmo.server.workstepController.Management/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://com.xyzmo.server.workstepController.Management/">
+      <s:element name="CreateWorkstepAdobe_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="workstepConfiguration" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateWorkstepAdobe_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateWorkstepAdobe_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateWorkstepAdobe_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentIds" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="workstepConfiguration" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateWorkstepAdobe_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateWorkstepAdobe_v2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteWorkstep_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteWorkstep_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteWorkstep_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkstepStatus_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkstepStatus_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWorkstepStatus_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdhocWorkstepConfiguration_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="createAdhocWorkstepConfiguration" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdhocWorkstepConfiguration_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAdhocWorkstepConfiguration_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdhocWorkstepConfiguration_v2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentIds" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="createAdhocWorkstepConfiguration" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAdhocWorkstepConfiguration_v2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAdhocWorkstepConfiguration_v2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDocument_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="document" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeToLive" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDocument_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadDocument_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartDocumentUpload_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="timeToLive" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="documentSize" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartDocumentUpload_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartDocumentUpload_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDocumentChunk_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="chunk" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UploadDocumentChunk_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UploadDocumentChunk_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileInformation_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileInformation_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileInformation_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisposeDocument_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisposeDocument_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DisposeDocument_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileWithId_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileWithId_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileWithId_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileWithIdChunk_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startIdx" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="length" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileWithIdChunk_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileWithIdChunk_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyDocument_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fileId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CopyDocument_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CopyDocument_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FlattenWorkstepDocument_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="configuration" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FlattenWorkstepDocument_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FlattenWorkstepDocument_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFlattenedWorkstepDocuments_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="configuration" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFlattenedWorkstepDocuments_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFlattenedWorkstepDocuments_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServerInformation_v1">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServerInformation_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServerInformation_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppendEventToAuditTrail_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="auditTrailEvent" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionInformation" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppendEventToAuditTrail_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppendEventToAuditTrail_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAuditTrailWithId_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="getAuditTrailConfiguration" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionInformation" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAuditTrailWithId_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAuditTrailWithId_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisablePolicyAndValidityChecks_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisablePolicyAndValidityChecks_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DisablePolicyAndValidityChecks_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnablePolicyAndValidityChecks_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EnablePolicyAndValidityChecks_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EnablePolicyAndValidityChecks_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkstepInformation_v1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="workstepId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkstepInformation_v1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWorkstepInformation_v1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateWorkstepAdobe_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateWorkstepAdobe_v1" />
+  </wsdl:message>
+  <wsdl:message name="CreateWorkstepAdobe_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateWorkstepAdobe_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateWorkstepAdobe_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateWorkstepAdobe_v2" />
+  </wsdl:message>
+  <wsdl:message name="CreateWorkstepAdobe_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateWorkstepAdobe_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="DeleteWorkstep_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteWorkstep_v1" />
+  </wsdl:message>
+  <wsdl:message name="DeleteWorkstep_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteWorkstep_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkstepStatus_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetWorkstepStatus_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkstepStatus_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetWorkstepStatus_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetAdhocWorkstepConfiguration_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetAdhocWorkstepConfiguration_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetAdhocWorkstepConfiguration_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetAdhocWorkstepConfiguration_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetAdhocWorkstepConfiguration_v2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetAdhocWorkstepConfiguration_v2" />
+  </wsdl:message>
+  <wsdl:message name="GetAdhocWorkstepConfiguration_v2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetAdhocWorkstepConfiguration_v2Response" />
+  </wsdl:message>
+  <wsdl:message name="UploadDocument_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:UploadDocument_v1" />
+  </wsdl:message>
+  <wsdl:message name="UploadDocument_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDocument_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="StartDocumentUpload_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:StartDocumentUpload_v1" />
+  </wsdl:message>
+  <wsdl:message name="StartDocumentUpload_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:StartDocumentUpload_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="UploadDocumentChunk_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:UploadDocumentChunk_v1" />
+  </wsdl:message>
+  <wsdl:message name="UploadDocumentChunk_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:UploadDocumentChunk_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFileInformation_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileInformation_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetFileInformation_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileInformation_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="DisposeDocument_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:DisposeDocument_v1" />
+  </wsdl:message>
+  <wsdl:message name="DisposeDocument_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:DisposeDocument_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFileWithId_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileWithId_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetFileWithId_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileWithId_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFileWithIdChunk_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileWithIdChunk_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetFileWithIdChunk_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileWithIdChunk_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="CopyDocument_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:CopyDocument_v1" />
+  </wsdl:message>
+  <wsdl:message name="CopyDocument_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:CopyDocument_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="FlattenWorkstepDocument_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:FlattenWorkstepDocument_v1" />
+  </wsdl:message>
+  <wsdl:message name="FlattenWorkstepDocument_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:FlattenWorkstepDocument_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetFlattenedWorkstepDocuments_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetFlattenedWorkstepDocuments_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetFlattenedWorkstepDocuments_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetFlattenedWorkstepDocuments_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetServerInformation_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetServerInformation_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetServerInformation_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetServerInformation_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="AppendEventToAuditTrail_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:AppendEventToAuditTrail_v1" />
+  </wsdl:message>
+  <wsdl:message name="AppendEventToAuditTrail_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:AppendEventToAuditTrail_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetAuditTrailWithId_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetAuditTrailWithId_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetAuditTrailWithId_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetAuditTrailWithId_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="DisablePolicyAndValidityChecks_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:DisablePolicyAndValidityChecks_v1" />
+  </wsdl:message>
+  <wsdl:message name="DisablePolicyAndValidityChecks_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:DisablePolicyAndValidityChecks_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="EnablePolicyAndValidityChecks_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:EnablePolicyAndValidityChecks_v1" />
+  </wsdl:message>
+  <wsdl:message name="EnablePolicyAndValidityChecks_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:EnablePolicyAndValidityChecks_v1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkstepInformation_v1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetWorkstepInformation_v1" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkstepInformation_v1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetWorkstepInformation_v1Response" />
+  </wsdl:message>
+  <wsdl:portType name="ManagementWorkstepControllerSoap">
+    <wsdl:operation name="CreateWorkstepAdobe_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method creates a workstep with the given configuration and returns the workstep information. If form fields are given, the values given are set in the document.&lt;br /&gt;Parameter 'documentId': The id of the workstep document.&lt;br /&gt;Parameter 'workstepConfiguration': The configuration for the workstep.</wsdl:documentation>
+      <wsdl:input message="tns:CreateWorkstepAdobe_v1SoapIn" />
+      <wsdl:output message="tns:CreateWorkstepAdobe_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateWorkstepAdobe_v2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method creates a workstep with the given configuration and returns the workstep information. If form fields are given, the values given are set in the document.&lt;br /&gt;Parameter 'documentIds': The ids of the documents to be used by the workstep.&lt;br /&gt;Parameter 'workstepConfiguration': The configuration for the workstep.</wsdl:documentation>
+      <wsdl:input message="tns:CreateWorkstepAdobe_v2SoapIn" />
+      <wsdl:output message="tns:CreateWorkstepAdobe_v2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkstep_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method deletes the workstep with the given id.&lt;br /&gt;Parameter 'workstepId': The id of the workstep.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteWorkstep_v1SoapIn" />
+      <wsdl:output message="tns:DeleteWorkstep_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkstepStatus_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns the status of a workstep.&lt;br /&gt;Parameter 'workstepId': The id of the workstep.</wsdl:documentation>
+      <wsdl:input message="tns:GetWorkstepStatus_v1SoapIn" />
+      <wsdl:output message="tns:GetWorkstepStatus_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdhocWorkstepConfiguration_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns the configuration which would be used for creating an adhoc workstep for the given document.&lt;br /&gt;Parameter 'documentId': The id of the workstep document.&lt;br /&gt;Parameter 'createAdhocWorkstepConfiguration': The configuration for the workstep.</wsdl:documentation>
+      <wsdl:input message="tns:GetAdhocWorkstepConfiguration_v1SoapIn" />
+      <wsdl:output message="tns:GetAdhocWorkstepConfiguration_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdhocWorkstepConfiguration_v2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns the configuration which would be used for creating an adhoc workstep for the given document.&lt;br /&gt;Parameter 'documentIds': The ids of the workstep documents.&lt;br /&gt;Parameter 'createAdhocWorkstepConfiguration': The configuration for the workstep.</wsdl:documentation>
+      <wsdl:input message="tns:GetAdhocWorkstepConfiguration_v2SoapIn" />
+      <wsdl:output message="tns:GetAdhocWorkstepConfiguration_v2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDocument_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method uploads a document and returns the document id.&lt;br /&gt;Parameter 'document': The content of the document.&lt;br /&gt;Parameter 'fileName': The name of the document.&lt;br /&gt;Parameter 'timeToLive': The time to live of the document.</wsdl:documentation>
+      <wsdl:input message="tns:UploadDocument_v1SoapIn" />
+      <wsdl:output message="tns:UploadDocument_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="StartDocumentUpload_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method starts uploading a document and returns the document id.&lt;br /&gt;Parameter 'fileName': The name of the document.&lt;br /&gt;Parameter 'timeToLive': The time to live of the document.&lt;br /&gt;Parameter 'documentSize': The size of the document.</wsdl:documentation>
+      <wsdl:input message="tns:StartDocumentUpload_v1SoapIn" />
+      <wsdl:output message="tns:StartDocumentUpload_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UploadDocumentChunk_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method uploads a chunk for the document with the given id.&lt;br /&gt;Parameter 'fileId': The id of the document.&lt;br /&gt;Parameter 'chunk': The chunk to upload.</wsdl:documentation>
+      <wsdl:input message="tns:UploadDocumentChunk_v1SoapIn" />
+      <wsdl:output message="tns:UploadDocumentChunk_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformation_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns information about the document with the given id.&lt;br /&gt;Parameter 'fileId': The id of the document.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetFileInformation_v1SoapIn" />
+      <wsdl:output message="tns:GetFileInformation_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisposeDocument_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method disposes the document with the given id.&lt;br /&gt;Parameter 'fileId': The id of the document.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:DisposeDocument_v1SoapIn" />
+      <wsdl:output message="tns:DisposeDocument_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileWithId_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns the content of the document with the given id.&lt;br /&gt;Parameter 'fileId': The id of the document.</wsdl:documentation>
+      <wsdl:input message="tns:GetFileWithId_v1SoapIn" />
+      <wsdl:output message="tns:GetFileWithId_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileWithIdChunk_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns information about the document with the given id.&lt;br /&gt;Parameter 'fileId': The id of the document.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetFileWithIdChunk_v1SoapIn" />
+      <wsdl:output message="tns:GetFileWithIdChunk_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CopyDocument_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method copies the document with the given id and returns the id of the copy.&lt;br /&gt;Parameter 'fileId': The id of the document.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:CopyDocument_v1SoapIn" />
+      <wsdl:output message="tns:CopyDocument_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FlattenWorkstepDocument_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">DEPRECATED.&lt;br /&gt;Method creates a new document with the flattened content of the workstep document.&lt;br /&gt;[string] 'workstepId': The id of the workstep.&lt;br /&gt;[xml string] 'configuration': The configuration for flattening.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:FlattenWorkstepDocument_v1SoapIn" />
+      <wsdl:output message="tns:FlattenWorkstepDocument_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlattenedWorkstepDocuments_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method creates a list of documents with the flattened content of the recent workstep documents.&lt;br /&gt;[string] 'workstepId': The id of the workstep.&lt;br /&gt;[xml string] 'configuration': The configuration for flattening.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetFlattenedWorkstepDocuments_v1SoapIn" />
+      <wsdl:output message="tns:GetFlattenedWorkstepDocuments_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServerInformation_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns information about the services (Installed products including versions</wsdl:documentation>
+      <wsdl:input message="tns:GetServerInformation_v1SoapIn" />
+      <wsdl:output message="tns:GetServerInformation_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AppendEventToAuditTrail_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method appends an external event to the AuditTrail of the given workstep&lt;br /&gt;[string] 'workstepId': The id of the workstep.&lt;br /&gt;[xml string] 'auditTrailEvent': The event which should be entered into the worksteps AuditTrail.&lt;br /&gt;[xml string] 'transactionInformation': Information about the transaction.</wsdl:documentation>
+      <wsdl:input message="tns:AppendEventToAuditTrail_v1SoapIn" />
+      <wsdl:output message="tns:AppendEventToAuditTrail_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAuditTrailWithId_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns the FileContainer for the AuditTrail of the given workstepId&lt;br /&gt;[string] 'getAuditTrailConfiguration': The configuration how the auditTrail should be returned&lt;br /&gt;[xml string] 'transactionInformation': Information about the transaction.</wsdl:documentation>
+      <wsdl:input message="tns:GetAuditTrailWithId_v1SoapIn" />
+      <wsdl:output message="tns:GetAuditTrailWithId_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisablePolicyAndValidityChecks_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method disables all policy and validity checks for a workstep, each call to a workstep where these checks are disabled returns ok, it is not verified if the call worked, this has to be checked manually.&lt;br /&gt;[string] 'workstepId': The id of the workstep.</wsdl:documentation>
+      <wsdl:input message="tns:DisablePolicyAndValidityChecks_v1SoapIn" />
+      <wsdl:output message="tns:DisablePolicyAndValidityChecks_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EnablePolicyAndValidityChecks_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method to re-enables all policy and validity checks for a workstep when they were disabled.&lt;br /&gt;[string] 'workstepId': The id of the workstep.</wsdl:documentation>
+      <wsdl:input message="tns:EnablePolicyAndValidityChecks_v1SoapIn" />
+      <wsdl:output message="tns:EnablePolicyAndValidityChecks_v1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkstepInformation_v1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Method returns the information about a workstep.&lt;br /&gt;[string] 'workstepId': The id of the workstep.&lt;br /&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetWorkstepInformation_v1SoapIn" />
+      <wsdl:output message="tns:GetWorkstepInformation_v1SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ManagementWorkstepControllerSoap" type="tns:ManagementWorkstepControllerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateWorkstepAdobe_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/CreateWorkstepAdobe_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateWorkstepAdobe_v2">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/CreateWorkstepAdobe_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkstep_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/DeleteWorkstep_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkstepStatus_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetWorkstepStatus_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdhocWorkstepConfiguration_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetAdhocWorkstepConfiguration_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdhocWorkstepConfiguration_v2">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetAdhocWorkstepConfiguration_v2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDocument_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/UploadDocument_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartDocumentUpload_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/StartDocumentUpload_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDocumentChunk_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/UploadDocumentChunk_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformation_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetFileInformation_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisposeDocument_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/DisposeDocument_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileWithId_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetFileWithId_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileWithIdChunk_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetFileWithIdChunk_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyDocument_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/CopyDocument_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FlattenWorkstepDocument_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/FlattenWorkstepDocument_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlattenedWorkstepDocuments_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetFlattenedWorkstepDocuments_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServerInformation_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetServerInformation_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppendEventToAuditTrail_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/AppendEventToAuditTrail_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuditTrailWithId_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetAuditTrailWithId_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisablePolicyAndValidityChecks_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/DisablePolicyAndValidityChecks_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnablePolicyAndValidityChecks_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/EnablePolicyAndValidityChecks_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkstepInformation_v1">
+      <soap:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetWorkstepInformation_v1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ManagementWorkstepControllerSoap12" type="tns:ManagementWorkstepControllerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateWorkstepAdobe_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/CreateWorkstepAdobe_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateWorkstepAdobe_v2">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/CreateWorkstepAdobe_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkstep_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/DeleteWorkstep_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkstepStatus_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetWorkstepStatus_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdhocWorkstepConfiguration_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetAdhocWorkstepConfiguration_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdhocWorkstepConfiguration_v2">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetAdhocWorkstepConfiguration_v2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDocument_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/UploadDocument_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartDocumentUpload_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/StartDocumentUpload_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadDocumentChunk_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/UploadDocumentChunk_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileInformation_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetFileInformation_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisposeDocument_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/DisposeDocument_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileWithId_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetFileWithId_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileWithIdChunk_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetFileWithIdChunk_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CopyDocument_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/CopyDocument_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FlattenWorkstepDocument_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/FlattenWorkstepDocument_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlattenedWorkstepDocuments_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetFlattenedWorkstepDocuments_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServerInformation_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetServerInformation_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppendEventToAuditTrail_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/AppendEventToAuditTrail_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuditTrailWithId_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetAuditTrailWithId_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisablePolicyAndValidityChecks_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/DisablePolicyAndValidityChecks_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EnablePolicyAndValidityChecks_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/EnablePolicyAndValidityChecks_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkstepInformation_v1">
+      <soap12:operation soapAction="http://com.xyzmo.server.workstepController.Management/GetWorkstepInformation_v1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ManagementWorkstepController">
+    <wsdl:port name="ManagementWorkstepControllerSoap" binding="tns:ManagementWorkstepControllerSoap">
+      <soap:address location="http://1.1.2.6:57002/WorkstepController.Management.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ManagementWorkstepControllerSoap12" binding="tns:ManagementWorkstepControllerSoap12">
+      <soap12:address location="http://1.1.2.6:57002/WorkstepController.Management.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

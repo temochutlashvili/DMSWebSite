@@ -15,6 +15,5 @@ public partial class index : System.Web.UI.Page
             distributor.ProcessWorkstep(workstepId);
             Response.Redirect(distributor.GetRedirectURL());
         }
-        
     }
 }
