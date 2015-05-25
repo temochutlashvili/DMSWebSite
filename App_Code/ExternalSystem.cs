@@ -6,6 +6,7 @@ using System.Web;
 public abstract class ExternalSystem
 {
     private string _prefix;
+    public string id;
 
     public ExternalSystem()
     {
@@ -19,7 +20,13 @@ public abstract class ExternalSystem
 
     public abstract void WriteToDB();
 
+    public void SaveLocally(string name, byte[] document) {
+
+    }
+
     public abstract void SendToSystem(string name, byte[] document);
+
+    public abstract string GetRedirectURL();
 
     public bool CheckPrefix(string prefix) { return _prefix == prefix; }
 }

@@ -21,4 +21,9 @@ public class DefaultSystem : ExternalSystem
     {
         // empty
     }
+
+    public override string GetRedirectURL()
+    {
+        return null;
+    }
 }

@@ -9,10 +9,10 @@ public partial class index : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string workstepId = Request["WorkstepID"];
-        if (!string.IsNullOrEmpty(workstepId)){
-            Distributor distributor = new Distributor();
-            distributor.ProcessWorkstep(workstepId);
+        Distributor distributor = new Distributor();
+        distributor.ProcessWorkstep(Request.Params);
+        if (distributor.GetRedirectURL() != null)
+        {
             Response.Redirect(distributor.GetRedirectURL());
         }
     }

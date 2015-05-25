@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,9 @@ using System.Xml;
 public class Distributor
 {
     public List<ExternalSystem> systemlist;
+    private string _documentName;
+    private byte[] _documentData;
+    private ExternalSystem _es;
 
     public Distributor()
     {
@@ -16,9 +20,14 @@ public class Distributor
         systemlist.Add(new DefaultSystem());
     }
 
-    public void ProcessWorkstep(string workstepId)
+    public Boolean ProcessWorkstep(NameValueCollection _params)
     {
         string documentId = null;
+        string workstepId = null;
+        string id = null;
+
+        workstepId = _params["WorkstepID"];
+        id = _params["id"];
 
         WorkstepWebServiceReference.ManagementWorkstepControllerSoapClient soapClient = new WorkstepWebServiceReference.ManagementWorkstepControllerSoapClient();
         //string workstepInfo = soapClient.GetWorkstepInformation_v1(workstepId);
@@ -34,7 +43,7 @@ public class Distributor
             result = elList[0].InnerXml;
         }
 
-        if(result != "ok") { return; }
+        if(result != "ok") { return false; }
 
         XmlNodeList documentList = xml.GetElementsByTagName("documentId");
         if(documentList.Count > 0)
@@ -54,25 +63,28 @@ public class Distributor
             result = elList[0].InnerXml;
         }
 
-        if (result != "ok") { return; }
+        if (result != "ok") { return false; }
 
-        string documentName = xml.GetElementsByTagName("SourceFileName")[0].InnerXml;
+        _documentName = xml.GetElementsByTagName("SourceFileName")[0].InnerXml;
         string documentDataString = xml.GetElementsByTagName("SourceFileContent")[0].InnerXml;
-        byte[] documentData = Convert.FromBase64String(documentDataString);
+        _documentData = Convert.FromBase64String(documentDataString);
 
-        string prefix = GetPrefix(documentName);
-        ExternalSystem es = GetSystemByPrefix(prefix);
+        string prefix = GetPrefix(_documentName);
+        _es = GetSystemByPrefix(prefix);
 
-        es.SendToSystem(documentName, documentData);
+        if(_es == null) { return false; };
 
-        //File.WriteAllBytes(@"f:\a.pdf", documentData);
+        _es.id = id; 
+        _es.WriteToDB();
+        _es.SaveLocally(_documentName, _documentData);
+        _es.SendToSystem(_documentName, _documentData);
 
-        return;
+        return true;
     }
 
     public string GetRedirectURL()
     {
-        return null;
+        if(_es != null) { return _es.GetRedirectURL();  } else return null ;
     }
 
     public ExternalSystem GetSystemByPrefix(string prefix)
