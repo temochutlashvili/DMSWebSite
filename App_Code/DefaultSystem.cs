@@ -6,8 +6,10 @@ using System.Web;
 public class DefaultSystem : ExternalSystem
 {
     const string _prefix = "default_system";
+    const string _systemid = "default_system";
+    const string _URLToSave = "/";
 
-    public DefaultSystem() : base(_prefix)
+    public DefaultSystem() : base(_prefix, _systemid)
     {
 
     }
@@ -25,5 +27,10 @@ public class DefaultSystem : ExternalSystem
     public override string GetRedirectURL()
     {
         return null;
+    }
+
+    public override void SaveFile(string name, byte[] document)
+    {
+        base.SaveToURL(name, document, _URLToSave);
     }
 }

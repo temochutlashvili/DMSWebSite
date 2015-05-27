@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 class NewCustomer : ExternalSystem
 {
     const string _prefix = "NewCustomer";
-    const string _postURL = "http://my.telasi.ge/signature/callback";
-    const string _redirectURL = "http://my.telasi.ge/network/new_customer/";
+    const string _systemid = "newcustomer";
+    //const string _postURL = "http://my.telasi.ge/signature/callback";
+    //const string _redirectURL = "http://my.telasi.ge/network/new_customer/";
+    const string _postURL = "http://localhost:3000/signature/callback";
+    const string _redirectURL = "http://localhost:3000/network/new_customer/";
+    const string _URLToSave = "/";
 
-    public NewCustomer() : base(_prefix)
+    public NewCustomer() : base(_prefix, _systemid)
     {
 
     }
@@ -51,5 +55,10 @@ class NewCustomer : ExternalSystem
     public override string GetRedirectURL()
     {
         return _redirectURL + id;
+    }
+
+    public override void SaveFile(string name, byte[] document)
+    {
+        base.SaveToURL(name, document, _URLToSave);
     }
 }

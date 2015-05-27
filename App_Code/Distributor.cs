@@ -9,15 +9,17 @@ using System.Xml;
 public class Distributor
 {
     public List<ExternalSystem> systemlist;
+    public ExternalSystem _defaultsystem;
     private string _documentName;
     private byte[] _documentData;
     private ExternalSystem _es;
 
     public Distributor()
     {
+        _defaultsystem = new DefaultSystem();
+
         systemlist = new List<ExternalSystem>();
         systemlist.Add(new NewCustomer());
-        systemlist.Add(new DefaultSystem());
     }
 
     public Boolean ProcessWorkstep(NameValueCollection _params)
@@ -25,9 +27,11 @@ public class Distributor
         string documentId = null;
         string workstepId = null;
         string id = null;
+        string sysid = null;
 
         workstepId = _params["WorkstepID"];
         id = _params["id"];
+        sysid = _params["sysid"];
 
         WorkstepWebServiceReference.ManagementWorkstepControllerSoapClient soapClient = new WorkstepWebServiceReference.ManagementWorkstepControllerSoapClient();
         //string workstepInfo = soapClient.GetWorkstepInformation_v1(workstepId);
@@ -69,14 +73,13 @@ public class Distributor
         string documentDataString = xml.GetElementsByTagName("SourceFileContent")[0].InnerXml;
         _documentData = Convert.FromBase64String(documentDataString);
 
-        string prefix = GetPrefix(_documentName);
-        _es = GetSystemByPrefix(prefix);
+        _es = GetSystemById(sysid);
 
-        if(_es == null) { return false; };
+        if (_es == null) { return false; };
 
         _es.id = id; 
         _es.WriteToDB();
-        _es.SaveLocally(_documentName, _documentData);
+        _es.SaveFile(_documentName, _documentData);
         _es.SendToSystem(_documentName, _documentData);
 
         return true;
@@ -85,6 +88,16 @@ public class Distributor
     public string GetRedirectURL()
     {
         if(_es != null) { return _es.GetRedirectURL();  } else return null ;
+    }
+
+    public ExternalSystem GetSystemById(string id)
+    {
+        foreach (ExternalSystem es in systemlist)
+        {
+            if (es.CheckSystemId(id)) { return es; }
+        }
+
+        return _defaultsystem;
     }
 
     public ExternalSystem GetSystemByPrefix(string prefix)
