@@ -14,7 +14,7 @@ class NewCustomer : ExternalSystem
     //const string _redirectURL = "http://my.telasi.ge/network/new_customer/";
     const string _postURL = "http://localhost:3000/signature/callback";
     const string _redirectURL = "http://localhost:3000/network/new_customer/";
-    const string _URLToSave = "/";
+    const string _URLToSave = "NewCustomer";
 
     public NewCustomer() : base(_prefix, _systemid)
     {

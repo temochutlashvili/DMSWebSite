@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 
 public abstract class ExternalSystem
 {
@@ -35,8 +36,16 @@ public abstract class ExternalSystem
 
     protected void SaveToURL(string name, byte[] document, string URL)
     {
-        string filename = Util.GenerateUniqueFileName(Path.Combine(URL, name));
-        File.WriteAllBytes(filename, document);
+        try
+        {
+            string GlobalPath = WebConfigurationManager.AppSettings["GlobalPath"];
+            string filename = Util.GenerateUniqueFileName(Path.Combine(GlobalPath, URL, name));
+            File.WriteAllBytes(filename, document);
+        } catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+        
     }
 
 }

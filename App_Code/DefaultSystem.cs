@@ -7,7 +7,7 @@ public class DefaultSystem : ExternalSystem
 {
     const string _prefix = "default_system";
     const string _systemid = "default_system";
-    const string _URLToSave = "/";
+    const string _URLToSave = "";
 
     public DefaultSystem() : base(_prefix, _systemid)
     {

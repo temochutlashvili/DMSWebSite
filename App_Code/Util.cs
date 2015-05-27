@@ -12,10 +12,10 @@ public static class Util
 
         if (File.Exists(filename))
         {
-            while (File.Exists(Path.Combine(filename, "-", fileNumber.ToString()))){
+            while (File.Exists(Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename) + "-" + fileNumber.ToString() + Path.GetExtension(filename)))){
                 fileNumber++;
             }
-            return Path.Combine(filename, "-", fileNumber.ToString());
+            return Path.Combine(Path.GetDirectoryName(filename), Path.GetFileNameWithoutExtension(filename) + "-" + fileNumber.ToString() + Path.GetExtension(filename));
         }
 
         return filename;
