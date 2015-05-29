@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="getfile.aspx.cs" Inherits="getfile" %>
 
 <!DOCTYPE html>
 
@@ -8,10 +8,12 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
     <div>
-    Document Saved
+        <% if (!success)
+            {
+                Response.Write(errorMessage);
+            }
+        %>
     </div>
-    </form>
 </body>
 </html>

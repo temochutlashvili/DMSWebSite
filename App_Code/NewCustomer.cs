@@ -10,10 +10,8 @@ class NewCustomer : ExternalSystem
 {
     const string _prefix = "NewCustomer";
     const string _systemid = "newcustomer";
-    //const string _postURL = "http://my.telasi.ge/signature/callback";
-    //const string _redirectURL = "http://my.telasi.ge/network/new_customer/";
-    const string _postURL = "http://localhost:3000/signature/callback";
-    const string _redirectURL = "http://localhost:3000/network/new_customer/";
+    const string _postURL = "http://my.telasi.ge/signature/callback";
+    const string _redirectURL = "http://my.telasi.ge/network/new_customer/";
     const string _URLToSave = "NewCustomer";
 
     public NewCustomer() : base(_prefix, _systemid)
@@ -47,6 +45,7 @@ class NewCustomer : ExternalSystem
             webResponse.Close();
         } catch(Exception ex)
         {
+            Util.WriteToLog(ex.Message);
             Console.Write(ex.Message);
         }
         

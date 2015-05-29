@@ -20,4 +20,15 @@ public static class Util
 
         return filename;
     }
+
+    public static void WriteToLog(string message)
+    {
+        //using (StreamWriter w = File.AppendText("C:\\inetpub\\wwwroot\\telasi\\dms\\Files\\log.txt"))
+        using (StreamWriter w = File.AppendText("c:\\log.txt"))
+        {
+            w.WriteLine(message);
+            w.Flush();
+            w.Close();
+        }
+    }
 }

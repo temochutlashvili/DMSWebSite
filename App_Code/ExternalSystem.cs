@@ -43,6 +43,7 @@ public abstract class ExternalSystem
             File.WriteAllBytes(filename, document);
         } catch (Exception ex)
         {
+            Util.WriteToLog(ex.Message);
             Console.WriteLine(ex.Message);
         }
         

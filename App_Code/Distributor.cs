@@ -47,7 +47,7 @@ public class Distributor
             result = elList[0].InnerXml;
         }
 
-        if(result != "ok") { return false; }
+        if(result != "ok") { Util.WriteToLog("workstep error"); return false; }
 
         XmlNodeList documentList = xml.GetElementsByTagName("documentId");
         if(documentList.Count > 0)
@@ -67,7 +67,7 @@ public class Distributor
             result = elList[0].InnerXml;
         }
 
-        if (result != "ok") { return false; }
+        if (result != "ok") { Util.WriteToLog("document error"); return false; }
 
         _documentName = xml.GetElementsByTagName("SourceFileName")[0].InnerXml;
         string documentDataString = xml.GetElementsByTagName("SourceFileContent")[0].InnerXml;
@@ -75,7 +75,7 @@ public class Distributor
 
         _es = GetSystemById(sysid);
 
-        if (_es == null) { return false; };
+        if (_es == null) { Util.WriteToLog("system not found"); return false; };
 
         _es.id = id; 
         _es.WriteToDB();
