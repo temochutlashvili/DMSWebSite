@@ -33,49 +33,28 @@ public class Distributor
         id = _params["id"];
         sysid = _params["sysid"];
 
+        _es = GetSystemById(sysid);
+        if (_es == null) { Util.WriteToLog("system not found"); return false; };
+
         WorkstepWebServiceReference.ManagementWorkstepControllerSoapClient soapClient = new WorkstepWebServiceReference.ManagementWorkstepControllerSoapClient();
-        //string workstepInfo = soapClient.GetWorkstepInformation_v1(workstepId);
         string workstepStatus = soapClient.GetWorkstepStatus_v1(workstepId);
 
         XmlDocument xml = new XmlDocument();
         xml.LoadXml(workstepStatus);
 
-        string result = null;
-        XmlNodeList elList = xml.GetElementsByTagName("baseResult");
-        if(elList.Count > 0)
-        {
-            result = elList[0].InnerXml;
-        }
-
-        if(result != "ok") { Util.WriteToLog("workstep error"); return false; }
-
-        XmlNodeList documentList = xml.GetElementsByTagName("documentId");
-        if(documentList.Count > 0)
-        {
-            documentId = documentList[0].InnerXml;
-        }
+        if (getElementByName("baseResult", xml) != "ok") { Util.WriteToLog("workstep error"); return false; }
+        if (getElementByName("workstepFinished", xml) != "1") { Util.WriteToLog("workstep rejected"); return false; }
+        documentId = getElementByName("documentId", xml);
 
         string fileData = soapClient.GetFileWithId_v1(documentId);
 
-        result = null;
-
         xml.LoadXml(fileData);
 
-        elList = xml.GetElementsByTagName("baseResult");
-        if (elList.Count > 0)
-        {
-            result = elList[0].InnerXml;
-        }
-
-        if (result != "ok") { Util.WriteToLog("document error"); return false; }
+        if (getElementByName("baseResult", xml) != "ok") { Util.WriteToLog("document error"); return false; }
 
         _documentName = xml.GetElementsByTagName("SourceFileName")[0].InnerXml;
         string documentDataString = xml.GetElementsByTagName("SourceFileContent")[0].InnerXml;
         _documentData = Convert.FromBase64String(documentDataString);
-
-        _es = GetSystemById(sysid);
-
-        if (_es == null) { Util.WriteToLog("system not found"); return false; };
 
         _es.id = id; 
         _es.WriteToDB();
@@ -123,4 +102,16 @@ public class Distributor
         var i = str.IndexOf('_');
         return (i > 0) ? str.Substring(0, i) : "default_system";
     }
+
+    private string getElementByName(string name, XmlDocument xml)
+    {
+        XmlNodeList elList = xml.GetElementsByTagName(name);
+        if (elList.Count > 0)
+        {
+            return elList[0].InnerXml;
+        }
+
+        return null;
+    }
+
 }
